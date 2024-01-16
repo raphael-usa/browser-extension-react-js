@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { runtime, tabs } from 'webextension-polyfill';
 
 import './Popup.css'
 
 export const Popup = () => {
+  console.log("=== Popup rendered");
   const [count, setCount] = useState(0)
   const link = 'https://github.com/guocaoyi/create-chrome-ext'
 
@@ -13,18 +15,21 @@ export const Popup = () => {
   const add = () => setCount(count + 1)
 
   useEffect(() => {
-    chrome.storage.sync.get(['count'], (result) => {
-      setCount(result.count || 0)
-    })
+    console.log("--- useEffect Popup")
+    // chrome.storage.sync.get(['count'], (result) => {
+    //   setCount(result.count || 0)
+    // })
   }, [])
 
   useEffect(() => {
-    chrome.storage.sync.set({ count })
-    chrome.runtime.sendMessage({ type: 'COUNT', count })
+    console.log("--- useEffect,count Popup")
+    // chrome.storage.sync.set({ count })
+    runtime.sendMessage({ type: 'COUNT', count })
   }, [count])
 
   return (
     <main>
+      <h1><a href="options.html" target="_blank">OptionsPage</a></h1>
       <h3>Popup Page</h3>
       <div className="calc">
         <button onClick={minus} disabled={count <= 0}>

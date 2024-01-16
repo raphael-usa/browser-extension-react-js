@@ -3,7 +3,7 @@ import packageData from '../package.json' assert { type: 'json' }
 
 export default defineManifest({
   name: packageData.name,
-  description: packageData.description+"-->> FOR CHROME.",
+  description: packageData.description+"-->> FOR FIREFOX.",
   version: packageData.version,
   manifest_version: 3,
   icons: {
@@ -19,8 +19,10 @@ export default defineManifest({
   options_page: 'options.html',
   devtools_page: 'devtools.html',
   background: {
-    service_worker: 'src/background/index.js',
-    type: 'module',
+    scripts: [
+      'src/background/index.js',
+    ],
+    type: 'module'
   },
   content_scripts: [
     {

@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react'
+import { runtime, tabs } from 'webextension-polyfill';
 
 import './SidePanel.css'
 
 export const SidePanel = () => {
+  console.log("=== SidePanel rendered");
   const [countSync, setCountSync] = useState(0)
   const link = 'https://github.com/guocaoyi/create-chrome-ext'
 
   useEffect(() => {
-    chrome.storage.sync.get(['count'], (result) => {
-      setCountSync(result.count || 0)
-    })
+    console.log("--- useEffect SidePanel")
+    // chrome.storage.sync.get(['count'], (result) => {
+    //   setCountSync(result.count || 0)
+    // })
 
-    chrome.runtime.onMessage.addListener((request) => {
+    runtime.onMessage.addListener((request) => {
       if (request.type === 'COUNT') {
         setCountSync(request.count || 0)
       }

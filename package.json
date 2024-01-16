@@ -18,6 +18,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:firefox": "cross-env VITE_BROWSER=firefox vite build",
     "preview": "vite preview",
     "fmt": "prettier --write '**/*.{jsx,js,json,css,scss,md}'"
   },
@@ -30,8 +31,10 @@
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "@vitejs/plugin-react": "^4.1.0",
+    "cross-env": "^7.0.3",
     "glob": "^10.3.10",
     "prettier": "^3.0.3",
-    "vite": "^4.4.11"
+    "vite": "^4.4.11",
+    "webextension-polyfill": "^0.10.0"
   }
 }
